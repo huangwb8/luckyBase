@@ -1,0 +1,21 @@
+Package: luckyBase
+Type: Package
+Title: Some base function of a private package--lucky
+Version: 0.1.0
+Authors@R:
+    person(given = "Weibin",
+           family = "Huang",
+           role = c("aut", "cre"),
+           email = "654751191@qq.com",
+           comment = c(ORCID = "0000-0003-0159-435X"))
+Maintainer: Weibin Huang <654751191@qq.com>
+Description: Assistant package of lucky
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    ggplot2,
+    ggpubr,
+    tidyr,
+    usethis
