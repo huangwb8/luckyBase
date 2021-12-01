@@ -150,10 +150,10 @@ Plus.convert <- function(data,type,
     colnames(anno.i3)[(ncol(anno.i3) - ncol(data.i3) + 1) : ncol(anno.i3)] <- colnames(data.i3) # 2021-11-4: 如果data.i3仅一列，colname会产生错误。此代码可避免此错误
     test1 <- table(anno.i3$id == "abnormal")
     if(T %in% names(test1)){
-      print(paste0(ns[i],": Attention!There are ",test1[names(test1) %in% T]," abnormal annotation."))
+      LuckyVerbose(paste0(ns[i],": Attention!There are ",test1[names(test1) %in% T]," abnormal annotation."))
       ## 正常注释
       abnormal.anno <- anno.i3[anno.i3$id == "abnormal",]
-      print(paste0("Gold standard id is ",goldstandard,"."))
+      LuckyVerbose(paste0("Gold standard id is ",goldstandard,"."))
       s1 <- paste0("from.",goldstandard)
       normal.anno <- ifelse(anno.i3$id == "abnormal",as.character(anno.i3[,s1]),as.character(anno.i3$id))
       anno.i3$id <- normal.anno
