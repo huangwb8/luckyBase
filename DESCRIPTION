@@ -18,4 +18,5 @@ Imports:
     ggplot2,
     ggpubr,
     tidyr,
+    tuneR,
     usethis

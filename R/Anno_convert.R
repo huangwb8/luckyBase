@@ -1,14 +1,14 @@
 
 
-#' multiple annotation based on dataset common.annot.
+#' @title multiple annotation based on dataset common.annot.
 #' @description multiple annotation based on dataset common.annot.Its colnames include:"ENSEMBL","ENSEMBL.Versions","SYMBOL","GENENAME","ENTREZID","UNIGENE" and "gene_type".
 #' @param vt genes you want to annotation
 #' @param fromtype the raw type of the genes.
 #' @param totype the annotated type of the genes.
-#' @param db a dataset containing annotation information.In lucky package,it is often common.annot dataset.
+#' @param db a dataset containing annotation information. In lucky package, it is often \code{common.annot} dataset for \code{hg38}.
 #'
-#'@author Weibin Huang<\email{654751191@@qq.com}>
-#'@export
+#' @author Weibin Huang<\email{654751191@@qq.com}>
+#' @export
 convert <- function(vt,
                     fromtype="ENSEMBL",
                     totype="SYMBOL",
@@ -27,7 +27,12 @@ convert <- function(vt,
   }
 }
 
-#'@export
+
+
+#' @title multiple annotation based on dataset common.annot.
+#' @description multiple annotation based on dataset common.annot.Its colnames include:"ENSEMBL","ENSEMBL.Versions","SYMBOL","GENENAME","ENTREZID","UNIGENE" and "gene_type".
+#' @inheritParams convert
+#' @export
 convert1 <- function(vt,
                     fromtype="SYMBOL",
                     totype="ENSEMBL",
@@ -46,7 +51,10 @@ convert1 <- function(vt,
   }
 }
 
-#'@export
+#' @title multiple annotation based on dataset common.annot.
+#' @description multiple annotation based on dataset common.annot.Its colnames include:"ENSEMBL","ENSEMBL.Versions","SYMBOL","GENENAME","ENTREZID","UNIGENE" and "gene_type".
+#' @inheritParams convert
+#' @export
 convert2 <- function(vt,
                      fromtype="ENTREZID",
                      totype="SYMBOL",
@@ -65,7 +73,15 @@ convert2 <- function(vt,
   }
 }
 
-#'@export
+#' @title multiple annotation based on dataset common.annot.
+#' @description multiple annotation based on dataset common.annot.Its colnames include:"ENSEMBL","ENSEMBL.Versions","SYMBOL","GENENAME","ENTREZID","UNIGENE" and "gene_type".
+#' @param data a list of feature data
+#' @param fromtype one or more fromtype, like "ENTREZID","SYMBOL", and "ENSEMBL"
+#' @param totype one target totype, like "ENTREZID","SYMBOL", and "ENSEMBL"
+#' @param goldstandard if annotated with different results, select this type as gold standard
+#' @inheritParams convert
+#' @details a plus version of \link{convert} for GEO annotation
+#' @export
 Plus.convert <- function(data,type,
                          fromtype = c("ENTREZID","SYMBOL"),
                          totype = "ENSEMBL",
@@ -161,18 +177,6 @@ Plus.convert <- function(data,type,
   return(l1)
 
 }
-
-# View(exo.anno$exo.mRNA$abnormal)
-# convert("677771",fromtype = "ENTREZID",totype = "SYMBOL")
-# convert("677771",fromtype = "ENTREZID",totype = "ENSEMBL")
-# convert("SCARNA4",fromtype = "SYMBOL",totype = "ENSEMBL")
-# convert("ENSG00000281394")
-# convert("ENSG00000280466")
-# View(common.annot)
-
-
-
-
 
 
 

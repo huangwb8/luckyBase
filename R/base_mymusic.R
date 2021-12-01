@@ -6,6 +6,7 @@
 #' @param path the path of music files ducument
 #' @return a string of music file path
 #' @author Weibin Huang<\email{654751191@@qq.com}>
+#' @importFrom tuneR play
 #' @examples
 #' mymusic(1)
 #' @export
