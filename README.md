@@ -16,7 +16,7 @@
 
 ## :alien: Authors
 
-Weibin Huang (黄伟斌);  <654751191@qq.com>
+Weibin Huang (黄伟斌);  <huangwb886@gmail.com>
 
-Guangdong Provincial Key Laboratory of Digestive Cancer Research, The Seventh Affiliated Hospital of Sun Yat-sen University, No. 628 Zhenyuan Road, Shenzhen, 518107, Guangdong, People’s Republic of China. Digestive Diseases Center
+Guangdong Provincial Key Laboratory of Digestive Cancer Research, The Seventh Affiliated Hospital of Sun Yat-sen University, No. 628 Zhenyuan Road, Shenzhen, 518107, Guangdong, China. 
 
