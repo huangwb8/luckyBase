@@ -3,7 +3,7 @@
 #' @description Show a plot with colors
 #' @param yourcolor a string of color. See \code{\link{mycolor}}
 #' @importFrom ggpubr ggbarplot rotate_x_text
-#' @importFrom ggplot2 labs ggtitle annotate theme
+#' @importFrom ggplot2 labs ggtitle annotate theme element_text
 #' @return a vector and a ggplot
 #' @author Weibin Huang<\email{654751191@@qq.com}>
 #' @examples
