@@ -68,7 +68,7 @@ mergeMatrixDup <- function(x,
   }
 
   ## select duplicate data for col
-  if(mergeCol){
+  if(mergeCol & !is.null(refCol)){
     LuckyVerbose("Merge duplicate for col...")
     ## new data
     x <- x2
@@ -83,8 +83,9 @@ mergeMatrixDup <- function(x,
     ref <- refCol[grep(T,logi)]
     x2 <- t(apply(x2,1,function(x)tapply(x,ref,fun_col)))
 
-    if(length(ref)== 2){
-      x2 <- matrix(x2,nrow = 1,byrow = F,dimnames = list(unique(ref),names(x2)))
+    # 2023-05-14: repair error when the length of ref is 2
+    if (length(ref) == 2) {
+      x2 <- matrix(x2, ncol = 1, byrow = T, dimnames = list(colnames(x2), unique(ref)))
     }
 
     merN <- colnames(x2)
