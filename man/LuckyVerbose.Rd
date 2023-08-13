@@ -4,7 +4,7 @@
 \alias{LuckyVerbose}
 \title{easy report system in function building}
 \usage{
-LuckyVerbose(..., levels = 1, type = NULL)
+LuckyVerbose(..., levels = 1, type = NULL, show.sys.time = T)
 }
 \arguments{
 \item{...}{one or multiple characters}

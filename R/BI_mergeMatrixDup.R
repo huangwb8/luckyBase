@@ -55,7 +55,7 @@ mergeMatrixDup <- function(x,
     ref <- refRow[grep(T,logi)]
     x2 <- apply(x2,2,function(x)tapply(x,ref,fun_row))
 
-    if(length(ref)== 2){
+    if(length(ref) == 2 | length(unique(ref)) == 1){
       x2 <- matrix(x2,nrow = 1,byrow = F,dimnames = list(unique(ref),names(x2)))
       }
 
@@ -84,7 +84,7 @@ mergeMatrixDup <- function(x,
     x2 <- t(apply(x2,1,function(x)tapply(x,ref,fun_col)))
 
     # 2023-05-14: repair error when the length of ref is 2
-    if (length(ref) == 2) {
+    if (length(ref) == 2|length(unique(ref)) == 1) {
       x2 <- matrix(x2, ncol = 1, byrow = T, dimnames = list(colnames(x2), unique(ref)))
     }
 
