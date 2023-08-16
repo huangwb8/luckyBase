@@ -34,7 +34,7 @@ LuckyVerbose <- function(...,levels = 1,type = NULL, show.sys.time = T){
 
   ## System time
   if(show.sys.time){
-    ls <- paste0(as.character(Sys.time()),' | ', ls)
+    ls <- paste0(as.character(format(Sys.time(), "%Y-%m-%d %H:%M:%S")),' | ', ls)
   }
 
   ## do Verbose
