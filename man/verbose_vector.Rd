@@ -4,10 +4,12 @@
 \alias{verbose_vector}
 \title{verbose_vector}
 \usage{
-verbose_vector(vector)
+verbose_vector(vector, tablename = T)
 }
 \arguments{
 \item{vector}{a vector}
+
+\item{tablename}{whether verbose table names of the vector}
 }
 \value{
 a character
