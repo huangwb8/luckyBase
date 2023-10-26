@@ -10,7 +10,7 @@
 #' @export
 verbose_vector <- function(vector, tablename = T){
   if(tablename){
-    vector <- names(table(vector, useNA = "always"))
+    vector <- names(table(vector))
   }
   vector %>% paste0('\"',.,'\"') %>% for(i in .) cat(i,sep = "",', ')
   # return(substring(v2, 1, (nchar(v2) - 1)))
