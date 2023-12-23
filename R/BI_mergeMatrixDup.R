@@ -8,6 +8,7 @@
 #' @param fun_row the function used in row merge
 #' @param refCol Character. the reference of col merge. It must be aligned precisely with col IDs in the \code{x}, otherwise the result is not reliable.
 #' @param refRow Character. the reference of row merge. It must be aligned precisely with row IDs in the \code{x}, otherwise the result is not reliable. if \code{refRow=NULL}, \code{mergRow} would be forced to \code{F}
+#' @param verbose Logic. Whether to report the running process.
 #' @param parallel parallel method is still in BETA.
 #' @return repaired data of input
 #' @seealso \code{\link{tapply}}; \code{\link{apply}}
@@ -44,11 +45,12 @@ mergeMatrixDup <- function(x,
                            mergeRow = T,
                            fun_row = mean,
                            refRow = NULL,
+                           verbose = T,
                            parallel = T){
 
   ## select duplicate data for row
   if(mergeRow & !is.null(refRow)){
-    LuckyVerbose("Merge duplicate for row...")
+    if(verbose) LuckyVerbose("Merge duplicate for row...")
     dupID_row <- refRow[duplicated(refRow)]
     logi <- refRow %in% dupID_row
     x2 <- x[logi, ] # View(x[!logi, ])
@@ -63,13 +65,13 @@ mergeMatrixDup <- function(x,
     x2 <- rbind(x[!logi, ],x2)
     rownames(x2)<- c(refRow[!logi],merN)
   } else {
-    LuckyVerbose("Ignore duplicate for row.")
+    if(verbose) LuckyVerbose("Ignore duplicate for row.")
     x2 <- x
   }
 
   ## select duplicate data for col
   if(mergeCol & !is.null(refCol)){
-    LuckyVerbose("Merge duplicate for col...")
+    if(verbose) LuckyVerbose("Merge duplicate for col...")
     ## new data
     x <- x2
 
@@ -93,11 +95,11 @@ mergeMatrixDup <- function(x,
     colnames(x2) <- c(refCol[!logi],merN)
 
   } else {
-    LuckyVerbose("Ignore duplicate for col.")
+    if(verbose) LuckyVerbose("Ignore duplicate for col.")
   }
 
   ## Output data
-  LuckyVerbose("All done!")
+  if(verbose) LuckyVerbose("All done!")
   return(x2)
 
 }

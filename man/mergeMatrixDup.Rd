@@ -12,6 +12,7 @@ mergeMatrixDup(
   mergeRow = T,
   fun_row = mean,
   refRow = NULL,
+  verbose = T,
   parallel = T
 )
 }
@@ -29,6 +30,8 @@ mergeMatrixDup(
 \item{fun_row}{the function used in row merge}
 
 \item{refRow}{Character. the reference of row merge. It must be aligned precisely with row IDs in the \code{x}, otherwise the result is not reliable. if \code{refRow=NULL}, \code{mergRow} would be forced to \code{F}}
+
+\item{verbose}{Logic. Whether to report the running process.}
 
 \item{parallel}{parallel method is still in BETA.}
 }
