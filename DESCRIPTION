@@ -1,7 +1,7 @@
 Package: luckyBase
 Type: Package
 Title: Some base function of a private package--lucky
-Version: 0.1.8
+Version: 0.1.9
 Authors@R:
     person(given = "Weibin",
            family = "Huang",
@@ -13,7 +13,7 @@ Description: Assistant package of lucky
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Imports: 
     ggplot2,
     ggpubr,
