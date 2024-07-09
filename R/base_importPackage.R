@@ -21,13 +21,13 @@ importPackage <- function(path.namespace = "."){
 
   ## get unique dependant packages
   n1 <- read.table(path.namespace);n1 <- as.character(n1$V1)
-  n2 <- n1[grep("importFrom",n1)]
-  n3 <- Fastextra(n2,"[(]",2);n3 <- unique(Fastextra(n3,",",1))
+  n2 <- n1[grep("importFrom[(]|import[(]",n1)]
+  n3 <- Fastextra(n2,"[(]",2);n3 <- Fastextra(n3,",",1); n3 <- unique(gsub(')','',n3))
   n3 <- sort(n3,decreasing = F)
 
   ## use usethis::use_package to import dependant packages
   for(i in n3){
-    use_package(i,"Imports")
+    usethis::use_package(i,"Imports")
   }
 
 }
