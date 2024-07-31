@@ -2,6 +2,7 @@
 #' @title enhanceConvert
 #' @description enhance luckyBase::convert with extra annotation
 #' @param enhanceList A list with Symbol-EnsemblID pairs
+#' @param verbose Whether to report running process
 #' @inheritParams convert
 #' @author Weibin Huang<\email{hwb2012@@qq.com}>
 #' @seealso \code{\link{convert}}
@@ -47,7 +48,8 @@ enhanceConvert <- function(vt,
                            fromtype = "SYMBOL",
                            totype = "ENSEMBL",
                            db = common.annot,
-                           enhanceList = NULL){
+                           enhanceList = NULL,
+                           verbose = T){
 
   # Test
   if(F){
@@ -72,25 +74,24 @@ enhanceConvert <- function(vt,
     )
   }
 
-
-  # Convert
   if(is.null(enhanceList)){
+    # Use default enhanceList
+    if(verbose) LuckyVerbose('enhanceConvert: Use default enhanceList...')
+    enhanceList <- readRDS(system.file("extdata", "enhanceList.rds", package = "luckyBase"))
+  }
 
-    vt2 <- convert(vt,fromtype,totype,db)
-
-  } else {
-
-    # Enhanced annotation
-    vt2 <- convert(vt,fromtype,totype,db)
-    if(sum(is.na(vt2)) > 0){
-      idx.annot <- match(vt[is.na(vt2)],names(enhanceList))
-      idx.raw <- match(vt[is.na(vt2)],vt)
-      LuckyVerbose('enhanceConvert: ',paste0(vt[is.na(vt2)],collapse = '; '))
-      vt2[idx.raw] <- as.character(enhanceList[idx.annot])
-    }
+  # Enhanced annotation
+  vt2 <- convert(vt,fromtype,totype,db)
+  if(sum(is.na(vt2)) > 0){
+    idx.annot <- match(vt[is.na(vt2)],names(enhanceList))
+    idx.raw <- match(vt[is.na(vt2)],vt)
+    if(verbose) LuckyVerbose('enhanceConvert: ',paste0(vt[is.na(vt2)],collapse = '; '))
+    vt2[idx.raw] <- as.character(enhanceList[idx.annot])
+    vt2[vt2 %in% "NULL"] <- NA
   }
 
   # Output
   return(vt2)
 
 }
+

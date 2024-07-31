@@ -9,7 +9,8 @@ enhanceConvert(
   fromtype = "SYMBOL",
   totype = "ENSEMBL",
   db = common.annot,
-  enhanceList = NULL
+  enhanceList = NULL,
+  verbose = T
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ enhanceConvert(
 \item{db}{a dataset containing annotation information. In lucky package, it is often \code{common.annot} dataset for \code{hg38}.}
 
 \item{enhanceList}{A list with Symbol-EnsemblID pairs}
+
+\item{verbose}{Whether to report running process}
 }
 \description{
 enhance luckyBase::convert with extra annotation

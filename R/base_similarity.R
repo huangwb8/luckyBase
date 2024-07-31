@@ -1,7 +1,7 @@
 
 
 #' @title Caluculate similarity of two vectors
-#' @description
+#' @description Caluculate similarity of two vectors
 #' @param vec1 A vector
 #' @param vec2 A vector
 #' @param method One of \code{"jaccard"}
