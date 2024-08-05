@@ -1,22 +1,29 @@
 
 
-#' @title RNA-Seq Read Count to FPKM
-#' @description RNA-Seq Read Count to FPKM
+#' @title Read Count to FPKM
+#' @description RNA-Seq Read Count to FPKM RNA-Seq Read Count to FPKM-like Gene length-normalized expression matrix
 #' @param readcount Read count matrix(row is gene, column is sample)
 #' @param geneid Only support \code{ensembl} now
 #' @param genomic Only support \code{hg38} now
-#' @return FPKM matrix
+#' @return FPKM-like expression matrix
+#' @details
+#' FPKM-like expression = Read Count × 10^9 / (Gene Length(bp) × Total Read Count)
 #' @author Weibin Huang<\email{hwb2012@@qq.com}>
 #' @export
 ReadCount2FPKM <- function(
     readcount,
     geneid = "ensembl",
-    genomic='hg38'
+    genomic = c('hg38','hg38_biomart','hg19')
 ){
 
-
   if(genomic=='hg38'){
-    file.annotations <- system.file("extdata", "Biomart.annotations.hg38.txt", package="luckyBase")
+    # load('./data/common.annot.width_2018-11-26.rda')
+    gene.annotations <- common.annot.width;
+  } else if(genomic=='hg19'){
+    # load('./data/common.annot.width_GRCh37.19_2018-11-29.rda')
+    gene.annotations <- common.annot.width_GRCh37.19
+  } else if(genomic=='hg38_biomart'){
+    gene.annotations <- read.table(system.file("extdata", "Biomart.annotations.hg38.txt", package="luckyBase"), sep="\t", header=TRUE)
   } else {
     stop('ReadCount2FPKM: Not supported genomic!')
   }
@@ -25,11 +32,10 @@ ReadCount2FPKM <- function(
     stop('ReadCount2FPKM: Please use ENSEMBL Gene ID!')
   }
 
-  gene.annotations <- read.table(file.annotations, sep="\t", header=TRUE)
-  coGene <- intersect(rownames(readcount), gene.annotations$Gene_ID)
+  coGene <- intersect(rownames(readcount), gene.annotations$ENSEMBL)
 
   readcount <- readcount[coGene,]
-  gene_lengths <- gene.annotations[match(coGene, gene.annotations$Gene_ID),]$length
+  gene_lengths <- gene.annotations[match(coGene, gene.annotations$Gene_ID),]$width
   total_counts <- colSums(readcount)
 
   # Calculate FPKM
