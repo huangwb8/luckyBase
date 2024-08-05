@@ -2,22 +2,29 @@
 % Please edit documentation in R/BI_ReadCount2FPKM.R
 \name{ReadCount2FPKM}
 \alias{ReadCount2FPKM}
-\title{RNA-Seq Read Count to FPKM}
+\title{Read Count to FPKM}
 \usage{
-ReadCount2FPKM(readcount, geneid = "ensembl", genomic = "hg38")
+ReadCount2FPKM(
+  readcount,
+  geneid = "ensembl",
+  genomic = c("hg38", "hg38_biomart", "hg19")[1]
+)
 }
 \arguments{
 \item{readcount}{Read count matrix(row is gene, column is sample)}
 
 \item{geneid}{Only support \code{ensembl} now}
 
-\item{genomic}{Only support \code{hg38} now}
+\item{genomic}{Only support \code{hg38}, \code{hg19}, or \code{hg38_biomart} now}
 }
 \value{
-FPKM matrix
+FPKM-like expression matrix
 }
 \description{
-RNA-Seq Read Count to FPKM
+RNA-Seq Read Count to FPKM RNA-Seq Read Count to FPKM-like Gene length-normalized expression matrix
+}
+\details{
+FPKM-like expression = Read Count × 10^9 / (Gene Length(bp) × Total Read Count)
 }
 \author{
 Weibin Huang<\email{hwb2012@qq.com}>

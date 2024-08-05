@@ -4,7 +4,7 @@
 #' @description RNA-Seq Read Count to FPKM RNA-Seq Read Count to FPKM-like Gene length-normalized expression matrix
 #' @param readcount Read count matrix(row is gene, column is sample)
 #' @param geneid Only support \code{ensembl} now
-#' @param genomic Only support \code{hg38} now
+#' @param genomic Only support \code{hg38}, \code{hg19}, or \code{hg38_biomart} now
 #' @return FPKM-like expression matrix
 #' @details
 #' FPKM-like expression = Read Count × 10^9 / (Gene Length(bp) × Total Read Count)
@@ -13,7 +13,7 @@
 ReadCount2FPKM <- function(
     readcount,
     geneid = "ensembl",
-    genomic = c('hg38','hg38_biomart','hg19')
+    genomic = c('hg38','hg38_biomart','hg19')[1]
 ){
 
   if(genomic=='hg38'){
@@ -35,7 +35,7 @@ ReadCount2FPKM <- function(
   coGene <- intersect(rownames(readcount), gene.annotations$ENSEMBL)
 
   readcount <- readcount[coGene,]
-  gene_lengths <- gene.annotations[match(coGene, gene.annotations$Gene_ID),]$width
+  gene_lengths <- gene.annotations[match(coGene, gene.annotations$ENSEMBL),]$width
   total_counts <- colSums(readcount)
 
   # Calculate FPKM
