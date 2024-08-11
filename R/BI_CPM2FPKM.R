@@ -36,7 +36,7 @@ CPM2FPKM <- function(
   gene_lengths <- gene.annotations[match(coGene, gene.annotations$ENSEMBL),]$width
 
   # Calculate FPKM
-  mt_fpkm <- apply(mt, 2, function(x)cpm_to_fpkm(x, gene_length))
+  mt_fpkm <- apply(mt, 2, function(x)cpm_to_fpkm(x, gene_lengths))
 
   return(mt_fpkm)
 

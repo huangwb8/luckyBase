@@ -36,7 +36,7 @@ ReadCount2FPKM <- function(
 
   mt <- mt[coGene,]
   gene_lengths <- gene.annotations[match(coGene, gene.annotations$ENSEMBL),]$width
-  total_counts <- colSums(mt)
+  total_counts <- colSums(mt, na.rm = TRUE)
 
   # Calculate FPKM
   mt_fpkm <- calculate_fpkm(mt, gene_lengths, total_counts)
