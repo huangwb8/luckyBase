@@ -1,7 +1,7 @@
 Package: luckyBase
 Type: Package
 Title: Some base function of a private package--lucky
-Version: 0.1.18
+Version: 0.1.19
 Authors@R:
     person(given = "Weibin",
            family = "Huang",
