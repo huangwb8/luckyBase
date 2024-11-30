@@ -1,0 +1,8 @@
+
+
+v20241130
++ Resources: E:\RCloud\database\DataDownload\annotation\GENCODE
++ 更新Release 47 (GRCh38.p14)
++ 优化备注
++ 包含cytoband
++ common.annot.transcripts_GRCh38较少用，未更新。
